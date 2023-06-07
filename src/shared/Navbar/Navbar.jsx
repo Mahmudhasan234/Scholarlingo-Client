@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../../Routes/Component/Container/Container';
 import Logo from './Logo/Logo';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-
     /****** toggle setting plus changing logo based on toggle settings*******/
     const [logo, setLogo] = useState('https://i.ibb.co/G2xkCFL/Screenshot-2023-06-07-211433.png')
-
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
-
-    // update state on toggle
     const handleToggle = (e) => {
         if (e.target.checked) {
             setTheme("dark");
@@ -21,15 +18,12 @@ const Navbar = () => {
             setTheme("light");
         }
     };
-
-    // set theme state in localstorage on mount & also update localstorage on state change
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const localTheme = localStorage.getItem("theme");
         // add custom data-theme attribute to html tag required to update theme using DaisyUI
         document.querySelector("html").setAttribute("data-theme", localTheme);
     }, [theme]);
-
     /********End*********/
 
     /****toggleBtn start***/
@@ -50,11 +44,29 @@ const Navbar = () => {
                 <svg className="swap-off fill-current w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" /></svg>
 
             </label>
-            
+
         </div>
     </>
-/****toggleBtn end***/
+    /****toggleBtn end***/
 
+    /****Nav items Start***/
+    const navItems = <>
+
+        <li><NavLink className={({ isActive }) =>
+            isActive ? 'lg:tab-bordered py-2 font-bold' : ''
+        }
+            to='/' >Home</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? 'lg:tab-bordered py-2 font-bold' : ''
+        }
+            to='/instractors'>Instractors</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+            isActive ? 'lg:tab-bordered py-2 font-bold' : ''
+        }
+            to='/languages'>Languages</NavLink></li>
+
+    </>
+/****Nav items End***/
 
 
     return (
@@ -66,34 +78,14 @@ const Navbar = () => {
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                             </label>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li>
-                                    <a>Parent</a>
-                                    <ul className="p-2">
-                                        <li><a>Submenu 1</a></li>
-                                        <li><a>Submenu 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a>Item 3</a></li>
+                            <ul tabIndex={0} className="menu-sm dropdown-content mt-3 p-2 shadow bg-gray-600 rounded-box w-52">
+                                {navItems}
                             </ul>
                         </div>
-                        <a className="btn btn-ghost normal-case text-xl"><Logo logo={logo}></Logo> </a>
+                        <Link><Logo logo={logo}></Logo> </Link>
                     </div>
-                    <div className="navbar-center hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1">
-                            <li><a>Item 1</a></li>
-                            <li tabIndex={0}>
-                                <details>
-                                    <summary>Parent</summary>
-                                    <ul className="p-2">
-                                        <li><a>Submenu 1</a></li>
-                                        <li><a>Submenu 2</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li><a>Item 3</a></li>
-                        </ul>
+                    <div className="navbar-center hidden lg:flex flex-row ">
+                        <ul className=' menu-horizontal gap-5'>{navItems}</ul>
                     </div>
                     <div className="navbar-end">
                         <a className="btn">Button</a>
