@@ -44,6 +44,7 @@ const Registration = () => {
                                     </label>
                                     <input type="text" name='email'{...register("email")} placeholder="email" className="input input-bordered" />
                                 </div>
+                               
                                 <div className="min-w-full">
                                     <label className="label">
                                         <span className="label-text">Password</span>
