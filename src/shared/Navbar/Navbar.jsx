@@ -88,7 +88,7 @@ const Navbar = () => {
                         <ul className=' menu-horizontal gap-5'>{navItems}</ul>
                     </div>
                     <div className="navbar-end gap-3">
-                        <Link><BiLogInCircle className='h-8 w-8'></BiLogInCircle></Link>
+                        <Link to='/login'><BiLogInCircle className='h-8 w-8'></BiLogInCircle></Link>
                         {toggleBtn}
                     </div>
                 </div>
