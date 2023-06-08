@@ -1,10 +1,12 @@
 import React from 'react';
 import Logo from '../Navbar/Logo/Logo';
+import Container from '../../Routes/Component/Container/Container';
 
 const Footer = () => {
     return (
         <div>
-            <footer className="footer max-h-max h-screen footer-center p-16 bg-white text-base-content rounded">
+            <Container>
+            <footer className="footer max-h-max h-screen footer-center lg:p-36 bg-white text-base-content rounded">
                 <div>
                     <Logo></Logo>
                     <p className='text-gray-700'>Best Platform to connect people with same language interest!! </p>
@@ -28,6 +30,7 @@ const Footer = () => {
                     <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
                 </div>
             </footer>
+            </Container>
         </div>
     );
 };
