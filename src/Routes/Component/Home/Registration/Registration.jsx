@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Container from '../../Container/Container';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { AiOutlineArrowRight, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { useForm } from "react-hook-form";
@@ -8,7 +9,7 @@ import { AuthContext } from '../../../../Provider/AuthProvider';
 
 const Registration = () => {
     // ---get data from authprovider ---
-    const { createUser, createUserWithGoogle } = useContext(AuthContext)
+    const { createUser, createUserWithGoogle,UpdateUserContent } = useContext(AuthContext)
 
 
     // ------ password show/hide----
@@ -23,20 +24,25 @@ const Registration = () => {
     // ------- react form hook start -----
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log('clicked');
+        const name = data.name;
+        console.log(data.name);
         // ------ create user ----
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
+                UpdateUserContent(name)
+                toast.success(`welcome 🖐` )
             })
-            .catch(err => console.error(err.message));
+            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
     // ------- react form hook end -----
 
     const handleSignInWithGoogle = () => {
         createUserWithGoogle()
-            .then(result => { console.log(result.user); })
-            .catch(err => { console.log(err.message); })
+            .then(result => { 
+                toast.success(`welcome ${result.user.displayName} 🖐` )
+                console.log(result.user); })
+                .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
 
 
@@ -110,7 +116,7 @@ const Registration = () => {
                             </div>
                         </form>
                         <div className="divider -mt-1 lg:-mt-16">OR</div>
-                        <div onClick={handleSignInWithGoogle} ><button className='btn hover:bg-amber-600 bg-amber-500 relative left-6 lg:left-[95px] w-[315px] text-gray-200'><FcGoogle className='h-5 w-5'></FcGoogle> Login with Google</button></div>
+                        <div onClick={handleSignInWithGoogle} ><button className='btn hover:bg-amber-600 bg-amber-500 relative left-6 lg:left-[95px] w-[315px] text-gray-200 mb-12'><FcGoogle className='h-5 w-5'></FcGoogle> Login with Google</button></div>
                         <div>
                         </div>
                     </div>

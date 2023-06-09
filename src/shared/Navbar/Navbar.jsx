@@ -1,11 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Container from '../../Routes/Component/Container/Container';
 import Logo from './Logo/Logo';
+import toast from 'react-hot-toast';
 import { Link, NavLink } from 'react-router-dom';
-import {BiLogInCircle} from 'react-icons/bi'
+import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi'
+import { FaUserCircle } from 'react-icons/fa'
+import { AuthContext } from '../../Provider/AuthProvider';
+
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+        .then(toast('See you next time!!', {
+            icon: '👏',
+          }))
+        .catch()
+    }
+
+
+
+
+
+
+
     //------------toggle setting plus changing logo based on toggle settings-----------
-    const [logo, setLogo] = useState('https://i.ibb.co/G2xkCFL/Screenshot-2023-06-07-211433.png')
+    const [logo, setLogo] = useState('https://i.ibb.co/FmGd9Pz/removal-ai-tmp-6481260c2086f.png')
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
     );
@@ -88,7 +109,19 @@ const Navbar = () => {
                         <ul className=' menu-horizontal gap-5'>{navItems}</ul>
                     </div>
                     <div className="navbar-end gap-3">
-                        <Link to='/login'><BiLogInCircle className='h-8 w-8'></BiLogInCircle></Link>
+                        {
+                            user && user ? <div>
+                                <div className="dropdown dropdown-hover dropdown-left">
+                                    <label tabIndex={0} className="m-1">{user.photoURL ? <div><img className='rounded-full h-8 w-8' src={user.photoURL} alt="" /></div> : <FaUserCircle className='h-5 w-5'></FaUserCircle>}</label>
+                                    <ul tabIndex={0} className="dropdown-content p-2 shadow bg-base-200 rounded-box w-52">
+                                        <li className='p-2'>{user.displayName}</li>
+                                        <li><p><BiLogOutCircle onClick={handleLogOut} className='h-8 w-8 cursor-pointer'></BiLogOutCircle></p></li>
+                                    </ul>
+                                </div>
+
+                            </div> :
+                                <Link to='/login'><BiLogInCircle className='h-8 w-8'></BiLogInCircle></Link>
+                        }
                         {toggleBtn}
                     </div>
                 </div>

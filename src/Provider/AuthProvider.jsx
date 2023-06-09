@@ -38,8 +38,8 @@ const UpdateUserContent =(name, image) =>{
 }
 useEffect (()=>{
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-        setUser(currentUser)
         setLoading(false)
+        setUser(currentUser)
     })
     return ()=> { unsubscribe()
 }},[])
