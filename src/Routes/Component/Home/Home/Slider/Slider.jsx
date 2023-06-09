@@ -8,7 +8,6 @@ import "swiper/css/pagination";
 import { Typewriter } from 'react-simple-typewriter'
 import { Pagination } from "swiper";
 import "./styles.css";
-
 const Slider = () => {
 
     return (
@@ -37,8 +36,8 @@ const Slider = () => {
 
                 </div></SwiperSlide>
                 <SwiperSlide><div className="md:flex justify-center items-center p-24">
-                    <div><h1 className="text-xl md:text-5xl  font-bold text-left ">Keep Yourself Confident with <br />  <span className="text-xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-pink-500"><Typewriter
-                        words={['Colleagues', 'Kollegen ', 'Collègues', 'Colegas','Collega']}
+                    <div><h1 className="text-xl md:text-5xl  font-bold text-left ">Learn New Language During<br />  <span className="text-xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-pink-500"><Typewriter
+                        words={['Summer', 'Sommer ', 'estate', 'verano','été']}
                         loop={5}
                         cursor
                         cursorStyle='|'
