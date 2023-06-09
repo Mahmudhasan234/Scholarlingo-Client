@@ -4,6 +4,7 @@ import { Rating } from '@smastrom/react-rating'
 import { BsCart4 } from 'react-icons/bs'
 import '@smastrom/react-rating/style.css'
 import Container from '../../Routes/Component/Container/Container';
+
 const Language = ({ item }) => {
     console.log(item)
     return (
@@ -14,7 +15,7 @@ const Language = ({ item }) => {
                     <div>
                         <span ><img className='rounded p-10  mb-5' src={item.languagesCountryImage[0].countryImage} alt="" /></span>
                     </div>
-                   
+
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{item.instructorName}</h2>
                         <Rating
