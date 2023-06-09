@@ -8,6 +8,8 @@ import Languages from "../Pages/Languages/Languages";
 import Home from "./Component/Home/Home/Home";
 import Login from "./Component/Home/Login/Login";
 import Registration from "./Component/Home/Registration/Registration";
+import Dashboard from "../Main/Dashboards/Dashboard";
+import SelectedCourse from "../Pages/DashBoard/StudentDashboard/SelectedCourse";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -36,4 +38,14 @@ export const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: "/dashboard",
+    element:<Dashboard></Dashboard>,
+    children:[
+      {
+        path: "selectedCourse",
+        element: <SelectedCourse></SelectedCourse>
+      }
+    ]
+  }
 ]);

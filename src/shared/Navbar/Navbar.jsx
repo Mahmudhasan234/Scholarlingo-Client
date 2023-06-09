@@ -3,7 +3,7 @@ import Container from '../../Routes/Component/Container/Container';
 import Logo from './Logo/Logo';
 import toast from 'react-hot-toast';
 import { Link, NavLink } from 'react-router-dom';
-import { BiLogInCircle, BiLogOutCircle } from 'react-icons/bi'
+import { BiLogInCircle, BiLogOutCircle, BiCart } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { AuthContext } from '../../Provider/AuthProvider';
 
@@ -13,10 +13,10 @@ const Navbar = () => {
 
     const handleLogOut = () => {
         logOut()
-        .then(toast('See you next time!!', {
-            icon: '👏',
-          }))
-        .catch()
+            .then(toast('See you next time!!', {
+                icon: '👏',
+            }))
+            .catch()
     }
 
 
@@ -109,12 +109,22 @@ const Navbar = () => {
                         <ul className=' menu-horizontal gap-5'>{navItems}</ul>
                     </div>
                     <div className="navbar-end gap-3">
+                        <div>
+                            
+                            <div className="dropdown dropdown-left dropdown-end dropdown-hover">
+                                <label tabIndex={0} className="badge"><BiCart className='h-8 w-8' ></BiCart> </label>
+                                <ul tabIndex={0} className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
+                                    <p>Your Cart is Empty</p>
+                                </ul>
+                            </div>
+                        </div>
                         {
                             user && user ? <div>
                                 <div className="dropdown dropdown-hover dropdown-left">
                                     <label tabIndex={0} className="m-1">{user.photoURL ? <div><img className='rounded-full h-8 w-8' src={user.photoURL} alt="" /></div> : <FaUserCircle className='h-5 w-5'></FaUserCircle>}</label>
                                     <ul tabIndex={0} className="dropdown-content p-2 shadow bg-base-200 rounded-box w-52">
                                         <li className='p-2'>{user.displayName}</li>
+                                        <li><Link to='/dashboard'>DashBoard</Link></li>
                                         <li><p><BiLogOutCircle onClick={handleLogOut} className='h-8 w-8 cursor-pointer'></BiLogOutCircle></p></li>
                                     </ul>
                                 </div>
