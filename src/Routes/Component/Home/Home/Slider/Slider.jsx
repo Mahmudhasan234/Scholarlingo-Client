@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Typewriter } from 'react-simple-typewriter'
-import "./styles.css";
 import { Pagination } from "swiper";
+import "./styles.css";
 
 const Slider = () => {
 
