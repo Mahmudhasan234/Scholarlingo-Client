@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Fade } from "react-awesome-reveal"
 import LanguageCard from './languageCard';
+import { Link } from 'react-router-dom';
 
 const PopularLanguage = () => {
     const [language, setLanguage] = useState([])
@@ -22,7 +23,7 @@ const PopularLanguage = () => {
                     }
                 </Fade>
             </div>
-            <button><span className='btn bg-amber-500  hover:bg-amber-600 text-white mb-5'>show all courses</span></button>
+            <button><span className='btn bg-amber-500  hover:bg-amber-600 text-white mb-5'><Link to='/languages'>show all courses</Link></span></button>
         </div>
     );
 };

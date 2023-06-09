@@ -13,9 +13,11 @@ const Instractors = () => {
     return (
         <div>
             <h1 className='text-2xl lg:text-7xl font-extrabold text-center m-12 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-400'>Our Beloved Instructors</h1>
-            {
+          <div className='grid grid-cols- lg:grid-cols-3'>
+          {
                instructors.map(instructor=> <IndividualInstructor instructor={instructor}></IndividualInstructor>)
             }
+          </div>
         </div>
     );
 };

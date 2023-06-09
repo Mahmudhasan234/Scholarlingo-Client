@@ -7,6 +7,7 @@ import "swiper/css/effect-creative";
 import { EffectCreative } from "swiper";
 import Instructors from './Instructors';
 import { Fade } from "react-awesome-reveal"
+import { Link } from 'react-router-dom';
 
 
 const PopularInstructors = () => {
@@ -54,7 +55,7 @@ const PopularInstructors = () => {
                </div>
                 
             </Swiper>
-            <button><span className='btn bg-amber-500  hover:bg-amber-600 text-white mb-5'>show all Instructors</span></button>
+            <button><span className='btn bg-amber-500  hover:bg-amber-600 text-white mb-5'><Link to='/instractors'>show all Instructors</Link></span></button>
         </div>
     );
 };
