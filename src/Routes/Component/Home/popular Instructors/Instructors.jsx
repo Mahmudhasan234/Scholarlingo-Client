@@ -1,9 +1,11 @@
 import React from 'react';
 import Container from '../../Container/Container';
-
+import { Rating } from '@smastrom/react-rating'
+import {BsCart4} from 'react-icons/bs'
+import '@smastrom/react-rating/style.css'
 const Instructors = ({ instructor }) => {
-    console.log(instructor)
-    console.log(instructor.languagesCountryImage[0].countryImage)
+    // console.log(instructor)
+    // console.log(instructor.languagesCountryImage[0].countryImage)
     return (
         <div >
 
@@ -12,16 +14,23 @@ const Instructors = ({ instructor }) => {
                     <span className='h-10 w-10 '><img className='rounded' src={instructor.languagesCountryImage[0].countryImage} alt="" /></span>
                 </div>
                 <figure className="px-10 pt-10">
-                    <img src={instructor.instructorImage} alt="Shoes" className="border-4 p-2 border-rose-400 rounded-full h-[240px] w-[250px]" />
+                    <img src={instructor.instructorImage} alt="Shoes" className="border-4 p-2 border-rose-400 rounded-full h-[248px] w-[260px]" />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{instructor.instructorName}</h2>
+                    <Rating
+                            style={{ maxWidth: 120 }}
+                            value={Math.round(instructor.priceRating)}
+                            readOnly
+                        />
+                        <p className='text-base font-semibold'>Price: ${instructor.price}</p>
                     <div className='flex gap-10 items-center'>
-                    <p>Total Seat: {instructor.languagesCountryImage[0].currentEnrollStudent + instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
-                    <p>Available Seat: {instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
+                        <p>Total Seat: {instructor.languagesCountryImage[0].currentEnrollStudent + instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
+                        <p>Available Seat: {instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
+                        
                     </div>
                     <div className="card-actions">
-                        <button className="btn btn-primary">Buy Now</button>
+                        <button className="btn bg-amber-500 hover:bg-amber-600 text-white">Buy Course <BsCart4 className='h-5 w-5'></BsCart4></button>
                     </div>
                 </div>
             </div></Container>
