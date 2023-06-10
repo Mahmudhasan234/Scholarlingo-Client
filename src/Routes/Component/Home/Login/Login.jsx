@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Container from '../../Container/Container';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AiOutlineArrowRight, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../../../Provider/AuthProvider';
 const Login = () => {
     const {user, signIn, createUserWithGoogle, logOut } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
     // ------ password show/hide----
     const [show, setShow] = useState(false)
     const handleShow = () => {
@@ -19,6 +22,7 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(result=>{
                 toast.success(`welcome back ${result.user.displayName} 🖐` )
+                navigate(from ? from : '/')
             })
             .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
@@ -26,8 +30,11 @@ const Login = () => {
         createUserWithGoogle()
             .then(result => { 
                 toast.success(`welcome ${result.user.displayName} 🖐` )
-                console.log(result.user); })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+                console.log(result.user); 
+                navigate(from ? from : '/') 
+            })
+            .catch(err => { toast.error("Something went Wrong 😔 please try again!!")
+            })
     }
     return (
         <div>

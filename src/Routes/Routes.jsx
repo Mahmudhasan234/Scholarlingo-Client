@@ -10,6 +10,7 @@ import Login from "./Component/Home/Login/Login";
 import Registration from "./Component/Home/Registration/Registration";
 import Dashboard from "../Main/Dashboards/Dashboard";
 import SelectedCourse from "../Pages/DashBoard/StudentDashboard/SelectedCourse";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
     children:[
       {
         path: "selectedCourse",
-        element: <SelectedCourse></SelectedCourse>
+        element: <PrivateRoute><SelectedCourse></SelectedCourse></PrivateRoute>
       }
     ]
   }
