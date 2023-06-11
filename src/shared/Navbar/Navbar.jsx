@@ -6,11 +6,12 @@ import { Link, NavLink } from 'react-router-dom';
 import { BiLogInCircle, BiLogOutCircle, BiCart } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { AuthContext } from '../../Provider/AuthProvider';
+import useSelectedCourse from '../../Pages/DashBoard/useSelectedCourse';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext)
-
+const [selectedCourses] = useSelectedCourse()
     const handleLogOut = () => {
         logOut()
             .then(toast('See you next time!!', {
@@ -114,7 +115,7 @@ const Navbar = () => {
                             <div className="dropdown dropdown-left dropdown-end dropdown-hover">
                                 <label tabIndex={0} className="badge"><BiCart className='h-8 w-8' ></BiCart> </label>
                                 <ul tabIndex={0} className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
-                                    <p>Your Cart is Empty</p>
+                                    <p>{selectedCourses?.length}</p>
                                 </ul>
                             </div>
                         </div>

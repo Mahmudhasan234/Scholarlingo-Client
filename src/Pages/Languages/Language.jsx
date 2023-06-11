@@ -5,8 +5,10 @@ import Container from '../../Routes/Component/Container/Container';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import useSelectedCourse from '../DashBoard/useSelectedCourse';
 const Language = ({ item }) => {
     const { user } = useContext(AuthContext)
+    const[, refetch] =useSelectedCourse()
     const name = user?.displayName
     const email = user?.email
     const courseName = item.languagesTeach[0]
@@ -25,6 +27,7 @@ const Language = ({ item }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
+                    refetch()
                     toast.success('Course added to your list')
                 }
                 console.log(data)

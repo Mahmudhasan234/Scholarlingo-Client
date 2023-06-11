@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Container from '../../Container/Container';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AiOutlineArrowRight, AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
@@ -10,7 +10,7 @@ import { AuthContext } from '../../../../Provider/AuthProvider';
 const Registration = () => {
     // ---get data from authprovider ---
     const { createUser, createUserWithGoogle,UpdateUserContent } = useContext(AuthContext)
-
+const navigate= useNavigate()
 
     // ------ password show/hide----
     const [show, setShow] = useState(false)
@@ -24,14 +24,27 @@ const Registration = () => {
     // ------- react form hook start -----
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        const name = data.name;
-        console.log(data.name);
+        // const name = dat?
         // ------ create user ----
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
-                UpdateUserContent(name)
-                toast.success(`welcome 🖐` )
+                UpdateUserContent(data.name)
+                .then(()=>{
+                    const saveUser = {name: data.name, email: data.email}
+                    fetch(`${import.meta.env.VITE_APIURL}/users`, {
+                        method: 'POST',
+                        headers:{'Content-Type': 'application/json'},
+                        body: JSON.stringify(saveUser)
+                    })
+                    .then(res=>res.json())
+                    .then(data => {
+                        if(data.insertedId){
+                            toast.success(`welcome 🖐 ${data.name}` )
+                        }
+                    })
+                    navigate('/')
+                })
             })
             .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
@@ -109,7 +122,7 @@ const Registration = () => {
                                 </div> */}
                                 <div className="form-control mt-6">
                                     <div className="flex flex-col w-full border-opacity-50">
-                                        <div className="grid card  rounded-box place-items-center"><button className='btn hover:bg-amber-600 bg-amber-500 text-gray-200 min-w-full'>Login</button>
+                                        <div className="grid card  rounded-box place-items-center"><button className='btn hover:bg-amber-600 bg-amber-500 text-gray-200 min-w-full'>Create Account</button>
                                         </div>
                                     </div>
                                 </div>

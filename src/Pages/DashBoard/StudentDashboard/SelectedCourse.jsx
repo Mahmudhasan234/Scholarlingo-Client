@@ -1,18 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../Provider/AuthProvider';
+
+// import { AuthContext } from '../../../Provider/AuthProvider';
 import CourseDetails from './CourseDetails';
+import useSelectedCourse from '../useSelectedCourse';
 
-const SelectedCourse = () => {
-    const { user } = useContext(AuthContext)
-    const [selectedCourses, setSelectedCourse] = useState([])
-    console.log(selectedCourses)
-    const url = `http://localhost:5000/usersData?email=${user.email}`
+const SelectedCourse = () => { 
 
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setSelectedCourse(data))
-    }, [])
+    const [selectedCourses]= useSelectedCourse()
+    // const { user } = useContext(AuthContext)
+    // const [selectedCourses, setSelectedCourse] = useState([])
+    // console.log(selectedCourses)
+    // const url = `http://localhost:5000/usersData?email=${user.email}`
+
+    // useEffect(() => {
+    //     fetch(url)
+    //         .then(res => res.json())
+    //         .then(data => setSelectedCourse(data))
+    // }, [])
 
 
     return (
