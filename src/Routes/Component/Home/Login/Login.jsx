@@ -29,7 +29,18 @@ const Login = () => {
     const handleSignInWithGoogle = () => {
         createUserWithGoogle()
             .then(result => { 
-                toast.success(`welcome ${result.user.displayName} 🖐` )
+                const saveUser = { name:result.user.displayName, email: result.user.email }
+                fetch(`${import.meta.env.VITE_APIURL}/users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            toast.success(`welcome ${result.user.displayName} 🖐`)
+                        }
+                    })
                 console.log(result.user); 
                 navigate(from ? from : '/') 
             })

@@ -9,8 +9,8 @@ import { AuthContext } from '../../../../Provider/AuthProvider';
 
 const Registration = () => {
     // ---get data from authprovider ---
-    const { createUser, createUserWithGoogle,UpdateUserContent } = useContext(AuthContext)
-const navigate= useNavigate()
+    const { createUser, createUserWithGoogle, UpdateUserContent } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     // ------ password show/hide----
     const [show, setShow] = useState(false)
@@ -30,21 +30,21 @@ const navigate= useNavigate()
             .then(result => {
                 console.log(result.user)
                 UpdateUserContent(data.name)
-                .then(()=>{
-                    const saveUser = {name: data.name, email: data.email}
-                    fetch(`${import.meta.env.VITE_APIURL}/users`, {
-                        method: 'POST',
-                        headers:{'Content-Type': 'application/json'},
-                        body: JSON.stringify(saveUser)
+                    .then(() => {
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch(`${import.meta.env.VITE_APIURL}/users`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    toast.success(`welcome 🖐`)
+                                }
+                            })
+                        navigate('/')
                     })
-                    .then(res=>res.json())
-                    .then(data => {
-                        if(data.insertedId){
-                            toast.success(`welcome 🖐 ${data.name}` )
-                        }
-                    })
-                    navigate('/')
-                })
             })
             .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
@@ -52,10 +52,25 @@ const navigate= useNavigate()
 
     const handleSignInWithGoogle = () => {
         createUserWithGoogle()
-            .then(result => { 
-                toast.success(`welcome ${result.user.displayName} 🖐` )
-                console.log(result.user); })
-                .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+            .then(result => {
+                const saveUser = { name:result.user.displayName, email: result.user.email }
+                fetch(`${import.meta.env.VITE_APIURL}/users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            toast.success(`welcome ${result.user.displayName} 🖐`)
+                        }
+                    })
+                navigate('/')
+
+
+                console.log(result.user);
+            })
+            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
     }
 
 
@@ -63,7 +78,7 @@ const navigate= useNavigate()
         <div>
             <Container>
                 <div className='lg:flex lg:gap-16 lg:justify-center lg:items-center'>
-                    <div> 
+                    <div>
                         <h1 className='scale-150'> <Link to='/'><AiOutlineArrowRight></AiOutlineArrowRight></Link></h1>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="lg:p-24 p-6 min-w-full">
