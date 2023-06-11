@@ -1,11 +1,35 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
 import { Rating } from '@smastrom/react-rating'
-import { BsCart4 } from 'react-icons/bs'
 import '@smastrom/react-rating/style.css'
 import Container from '../../Routes/Component/Container/Container';
-
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 const Language = ({ item }) => {
+    const { user } = useContext(AuthContext)
+    const name = user?.displayName
+    const email = user?.email
+    const courseName = item.languagesTeach[0]
+    const instructorName = item.instructorName
+    const availableSeat = item.languagesCountryImage[0].availableSeatForEnrollment
+    const price = item.price
+    const image = item.languagesCountryImage[0].countryImage
+    const currentUser = { name, email, courseName, instructorName, availableSeat, price,image }
+    const handleBuyCourses = () => {
+        console.log(currentUser)
+        fetch(`${import.meta.env.VITE_APIURL}/usersData`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(currentUser),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Course added to your list')
+                }
+                console.log(data)
+            })
+    }
     console.log(item)
     return (
         <div>
@@ -30,9 +54,7 @@ const Language = ({ item }) => {
                             <p>Total Seat: {item.languagesCountryImage[0].currentEnrollStudent + item.languagesCountryImage[0].availableSeatForEnrollment}</p>
                             <p>Available Seat: {item.languagesCountryImage[0].availableSeatForEnrollment}</p>
                         </div>
-                        <div className="card-actions">
-                            <button className="btn bg-amber-500 hover:bg-amber-600 text-white">Buy Course <BsCart4 className='h-5 w-5'></BsCart4></button>
-                        </div>
+                        <button className="btn px-8 bg-amber-500 hover:bg-amber-600 text-white"><Link onClick={handleBuyCourses} to={user && user ? '/languages' : '/login'}>Buy Course</Link></button>
                     </div>
                 </div>
             </Container>

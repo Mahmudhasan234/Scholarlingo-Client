@@ -9,29 +9,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const IndividualInstructor = ({ instructor }) => {
-    const { user } = useContext(AuthContext)
-    const name = user?.displayName
-    const email = user?.email
-    const courseName = instructor.languagesTeach[0]
-    const instructorName = instructor.instructorName
-    const availableSeat = instructor.languagesCountryImage[0].availableSeatForEnrollment
-    const price = instructor.price
-
-    const currentUser = { name, email, courseName, instructorName, availableSeat, price }
-    const handleBuyCourses = () => {
-        console.log(currentUser)
-        fetch(`${import.meta.env.VITE_APIURL}/usersData`, {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(currentUser),
-        })
-            .then(res => res.json())
-            .then(data => {
-               if(data.insertedId){
-                toast.success('Course added to your list')
-               } 
-                console.log(data)})
-    }
+    
     console.log(instructor)
 
 
@@ -61,9 +39,7 @@ const IndividualInstructor = ({ instructor }) => {
                             <p>Total Seat: {instructor.languagesCountryImage[0].currentEnrollStudent + instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
                             <p>Available Seat: {instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
                         </div>
-                        <div className="card-actions">
-                            <button className="btn bg-amber-500 hover:bg-amber-600 text-white"><Link onClick={handleBuyCourses} to={user && user ? '/instractors' : '/login'}>Buy Course <BsCart4 className='h-5 w-5'></BsCart4></Link></button>
-                        </div>
+                       
                     </div>
                 </div>
             </Container>

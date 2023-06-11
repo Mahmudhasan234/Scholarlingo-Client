@@ -28,9 +28,7 @@ const Instructors = ({ instructor }) => {
                         <p>Total Seat: {instructor.languagesCountryImage[0].currentEnrollStudent + instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>
                         <p>Available Seat: {instructor.languagesCountryImage[0].availableSeatForEnrollment}</p>   
                     </div>
-                    <div className="card-actions">
-                        <button className="btn bg-amber-500 hover:bg-amber-600 text-white">Buy Course <BsCart4 className='h-5 w-5'></BsCart4></button>
-                    </div>
+                   
                 </div>
             </div>
             </Container>
