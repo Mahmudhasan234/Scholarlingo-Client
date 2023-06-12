@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Language from './Language';
 
-
 const Languages = () => {
     const [language, setLanguage] = useState([])
     useEffect(() => {

@@ -53,7 +53,7 @@ const Registration = () => {
     const handleSignInWithGoogle = () => {
         createUserWithGoogle()
             .then(result => {
-                const saveUser = { name:result.user.displayName, email: result.user.email }
+                const saveUser = { name: result.user.displayName, email: result.user.email }
                 fetch(`${import.meta.env.VITE_APIURL}/users`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -70,7 +70,8 @@ const Registration = () => {
 
                 console.log(result.user);
             })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") 
+        console.log(err.message)})
     }
 
 
@@ -135,6 +136,10 @@ const Registration = () => {
                                         <p>Already Have an Account? <Link to='/login'>Login</Link></p>
                                     </label>
                                 </div> */}
+                                <label className="label">
+
+                                    <p>Already Have an Account? <Link to='/login'>Login</Link></p>
+                                </label>
                                 <div className="form-control mt-6">
                                     <div className="flex flex-col w-full border-opacity-50">
                                         <div className="grid card  rounded-box place-items-center"><button className='btn hover:bg-amber-600 bg-amber-500 text-gray-200 min-w-full'>Create Account</button>

@@ -6,11 +6,14 @@ import { MdManageAccounts } from 'react-icons/md'
 import { SiGooglehome, SiGoogleclassroom } from 'react-icons/si'
 import { BiBookAdd, BiHomeAlt2, BiHistory, BiHome } from 'react-icons/bi'
 import { BsBookmarkCheck } from 'react-icons/bs'
+import useAdmin from '../../Hooks/useAdmin';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     console.log(user)
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
+    // const isAdmin =true
+
     const isInstructor = false
 
     return (
@@ -44,33 +47,33 @@ const Dashboard = () => {
                             </>
                                 :
                                 <>
-                                {
-                                    isInstructor? 
-                                    <>
-                                    {/* instructor section */}
-                        <div className="divider"></div>
-                        <li ><Link to='/dashboard/selectedCourse'><BiBookAdd className='h-5 2-5'></BiBookAdd> Add Course</Link></li>
-                        <li><Link> <FcGraduationCap className='h-5 w-5'></FcGraduationCap> My Courses</Link></li>
-                        <li><Link to='/'><BiHomeAlt2 className='h-5 w-5'></BiHomeAlt2> Home</Link></li>
-                                    </>
-                                    :
-                                    <>
- {/* user section */}
- <div className="divider"></div>
+                                    {
+                                        isInstructor ?
+                                            <>
+                                                {/* instructor section */}
+                                                <div className="divider"></div>
+                                                <li ><Link to='/dashboard/selectedCourse'><BiBookAdd className='h-5 2-5'></BiBookAdd> Add Course</Link></li>
+                                                <li><Link> <FcGraduationCap className='h-5 w-5'></FcGraduationCap> My Courses</Link></li>
+                                                <li><Link to='/'><BiHomeAlt2 className='h-5 w-5'></BiHomeAlt2> Home</Link></li>
+                                            </>
+                                            :
+                                            <>
+                                                {/* user section */}
+                                                <div className="divider"></div>
 
-<li ><Link to='/dashboard/selectedCourse'> <BsBookmarkCheck className='h-5 w-5'></BsBookmarkCheck>Selected Course</Link></li>
-<li><Link> <BiHistory className='h-5 w-5'></BiHistory>Payment History</Link></li>
-<li><Link><SiGoogleclassroom className='h-5 w-5'></SiGoogleclassroom> Enrolled Class</Link></li>
-<li><Link to='/'><BiHome className='h-5 w-5'></BiHome> Home</Link></li>
+                                                <li ><Link to='/dashboard/selectedCourse'> <BsBookmarkCheck className='h-5 w-5'></BsBookmarkCheck>Selected Course</Link></li>
+                                                <li><Link> <BiHistory className='h-5 w-5'></BiHistory>Payment History</Link></li>
+                                                <li><Link><SiGoogleclassroom className='h-5 w-5'></SiGoogleclassroom> Enrolled Class</Link></li>
+                                                <li><Link to='/'><BiHome className='h-5 w-5'></BiHome> Home</Link></li>
 
-                                    </>
-                                }
+                                            </>
+                                    }
                                 </>
                         }
 
-                        
 
-                       
+
+
 
                     </ul>
 

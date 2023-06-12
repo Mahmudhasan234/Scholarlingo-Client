@@ -45,6 +45,7 @@ const Login = () => {
                 navigate(from ? from : '/') 
             })
             .catch(err => { toast.error("Something went Wrong 😔 please try again!!")
+            console.log(err.message)
             })
     }
     return (

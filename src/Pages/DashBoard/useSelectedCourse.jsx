@@ -7,7 +7,7 @@ const useSelectedCourse = () => {
     const { isLoading,  refetch, isError, data:selectedCourses= [], error } = useQuery({
         queryKey: ['userData', user?.email],
         queryFn: async()=>{
-            const response = await fetch(`${import.meta.env.VITE_APIURL}/usersData?email=${user.email}`) 
+            const response = await fetch(`${import.meta.env.VITE_APIURL}/usersData?email=${user?.email}`) 
             return response.json()
         },
       })

@@ -67,9 +67,9 @@ const ManageUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <div>
-                                        <td onClick={()=>handleInstructor(user._id)} >{user.role === 'instructor' ? <button  className="opacity-20" disabled ><GiTeacher className="h-5 w-5"
+                                        <td onClick={()=>handleInstructor(user._id)} >{user?.role === 'instructor' ? <button  className="opacity-20" disabled ><GiTeacher className="h-5 w-5"
                                         title="Already Instructor"></GiTeacher></button> : <GiTeacher className="h-5  cursor-pointer  w-5" title="make Instructor"></GiTeacher>} </td>
-                                        <td onClick={() => handleAdmin(user._id)}>{user.role === 'admin' ? <button className="opacity-20" disabled>
+                                        <td onClick={() => handleAdmin(user._id)}>{user?.role === 'admin' ? <button className="opacity-20" disabled>
                                         <RiShieldUserLine className="h-5 w-5" title="Admin"></RiShieldUserLine>
                                         </button> : <RiShieldUserLine className="h-5 w-5 cursor-pointer " title="Make Admin"></RiShieldUserLine>} </td>
                                     </div>
