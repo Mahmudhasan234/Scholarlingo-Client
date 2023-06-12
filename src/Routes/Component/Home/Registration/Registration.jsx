@@ -24,7 +24,13 @@ const Registration = () => {
     // ------- react form hook start -----
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        // const name = dat?
+        // upload image
+        const formData= new FormData() 
+        formData.append('image', data.image[0])
+        const url = ` https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API}`
+        fetch(url,{method: 'POST', body:formData})
+        .then(res=>res.json()
+        .then(image=>console.log(image)))
         // ------ create user ----
         createUser(data.email, data.password)
             .then(result => {
@@ -123,7 +129,7 @@ const Registration = () => {
                                         <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[510px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
                                 </div>
-                                {/* <div className="min-w-full">
+                                <div className="min-w-full">
                                     <label className="label">
                                         <span className="label-text"> Confirm Password</span>
                                     </label>
@@ -135,11 +141,11 @@ const Registration = () => {
 
                                         <p>Already Have an Account? <Link to='/login'>Login</Link></p>
                                     </label>
-                                </div> */}
-                                <label className="label">
+                                </div>
+                                {/* <label className="label">
 
                                     <p>Already Have an Account? <Link to='/login'>Login</Link></p>
-                                </label>
+                                </label> */}
                                 <div className="form-control mt-6">
                                     <div className="flex flex-col w-full border-opacity-50">
                                         <div className="grid card  rounded-box place-items-center"><button className='btn hover:bg-amber-600 bg-amber-500 text-gray-200 min-w-full'>Create Account</button>

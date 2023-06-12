@@ -64,7 +64,7 @@ const Dashboard = () => {
                                             <>
                                                 {/* instructor section */}
                                                 <div className="divider"></div>
-                                                <li ><Link to='/dashboard/selectedCourse'><BiBookAdd className='h-5 2-5'></BiBookAdd> Add Course</Link></li>
+                                                <li ><Link to='/dashboard/addCourse'><BiBookAdd className='h-5 2-5'></BiBookAdd> Add Course</Link></li>
                                                 <li><Link> <FcGraduationCap className='h-5 w-5'></FcGraduationCap> My Courses</Link></li>
                                                 <li><Link to='/'><BiHomeAlt2 className='h-5 w-5'></BiHomeAlt2> Home</Link></li>
                                             </>
