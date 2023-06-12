@@ -11,6 +11,7 @@ import Registration from "./Component/Home/Registration/Registration";
 import Dashboard from "../Main/Dashboards/Dashboard";
 import SelectedCourse from "../Pages/DashBoard/StudentDashboard/SelectedCourse";
 import PrivateRoute from "./privateRoute/PrivateRoute";
+import ManageUsers from "../Main/Dashboards/Component/ManageUser/ManageUsers";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -41,12 +42,16 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    children:[
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children: [
       {
         path: "selectedCourse",
         element: <PrivateRoute><SelectedCourse></SelectedCourse></PrivateRoute>
-      }
+      },
+      {
+        path: "allusers",
+        element: <ManageUsers></ManageUsers>
+      },
     ]
   }
 ]);

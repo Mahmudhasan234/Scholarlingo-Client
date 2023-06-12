@@ -38,7 +38,7 @@ const Dashboard = () => {
                                 {/* admin section */}
                                 <div className="divider"></div>
                                 <li ><Link to=''><FcGraduationCap className='h-5 w-5'></FcGraduationCap> Manage Courses</Link></li>
-                                <li><Link><MdManageAccounts className='h-5 w-5'></MdManageAccounts> Manage Users</Link></li>
+                                <li><Link to='allusers'><MdManageAccounts className='h-5 w-5'></MdManageAccounts> Manage Users</Link></li>
                                 <li><Link to='/'><SiGooglehome className='h-5 w-5'></SiGooglehome> Admin Home</Link></li>
 
                             </>
