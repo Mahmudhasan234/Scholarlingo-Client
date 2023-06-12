@@ -8,7 +8,7 @@ import { BiBookAdd, BiHomeAlt2, BiHistory, BiHome } from 'react-icons/bi'
 import { BsBookmarkCheck } from 'react-icons/bs'
 import useAdmin from '../../Hooks/useAdmin';
 import useInstructor from '../../Hooks/useInstructor';
-
+import {MdOutlinePendingActions} from 'react-icons/md'
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -54,6 +54,7 @@ const Dashboard = () => {
                                 <div className="divider"></div>
                                 <li ><Link to=''><FcGraduationCap className='h-5 w-5'></FcGraduationCap> Manage Courses</Link></li>
                                 <li><Link to='allusers'><MdManageAccounts className='h-5 w-5'></MdManageAccounts> Manage Users</Link></li>
+                                <li ><Link to='pendingRequest'><MdOutlinePendingActions className='h-5 w-5'></MdOutlinePendingActions>  Pending Request</Link></li>
                                 <li><Link to='/'><SiGooglehome className='h-5 w-5'></SiGooglehome> Admin Home</Link></li>
 
                             </>
@@ -65,7 +66,7 @@ const Dashboard = () => {
                                                 {/* instructor section */}
                                                 <div className="divider"></div>
                                                 <li ><Link to='/dashboard/addCourse'><BiBookAdd className='h-5 2-5'></BiBookAdd> Add Course</Link></li>
-                                                <li><Link> <FcGraduationCap className='h-5 w-5'></FcGraduationCap> My Courses</Link></li>
+                                                <li><Link to='/dashboard/manageCourse'> <FcGraduationCap className='h-5 w-5'></FcGraduationCap> My Courses</Link></li>
                                                 <li><Link to='/'><BiHomeAlt2 className='h-5 w-5'></BiHomeAlt2> Home</Link></li>
                                             </>
                                             :

@@ -14,6 +14,8 @@ import PrivateRoute from "./privateRoute/PrivateRoute";
 import ManageUsers from "../Main/Dashboards/Component/ManageUser/ManageUsers";
 import DashBoardHome from "../Main/Dashboards/Home Component/DashBoardHome";
 import AddCourses from "../Main/Dashboards/Component/Instructor/Add Courses/AddCourses";
+import ManageMyCourse from "../Main/Dashboards/Component/Instructor/ManageMyCourse";
+import PendingRequest from "../Main/Dashboards/Component/Admin/PendingRequest";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -42,13 +44,17 @@ export const router = createBrowserRouter([
       },
     ]
   },
+
+
+
+
   {
     path: "/dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
-        path:"/dashboard",
-        element:<DashBoardHome></DashBoardHome>
+        path: "/dashboard",
+        element: <DashBoardHome></DashBoardHome>
       },
       {
         path: "selectedCourse",
@@ -60,7 +66,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "addCourse",
-        element:<AddCourses></AddCourses>
+        element: <AddCourses></AddCourses>
+      },
+      {
+        path: "manageCourse",
+        element: <ManageMyCourse></ManageMyCourse>
+      },
+      {
+        path: "pendingRequest",
+        element: <PendingRequest></PendingRequest>
       },
     ]
   }
