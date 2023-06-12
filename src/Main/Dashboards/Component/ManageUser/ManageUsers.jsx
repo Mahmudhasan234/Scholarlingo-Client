@@ -5,13 +5,13 @@ import { GiTeacher } from 'react-icons/gi'
 import { RiShieldUserLine } from 'react-icons/ri'
 const ManageUsers = () => {
 
-    const { data: users = [], refetch } = useQuery(['user'], async () => {
+    const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await fetch(`${import.meta.env.VITE_APIURL}/users`)
         return res.json()
     })
     // admin
     const handleAdmin = (id) => {
-        fetch(`${import.meta.env.VITE_APIURL}/users/admin/${id}`, {
+        fetch(`${import.meta.env.VITE_APIURL}/users/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -26,6 +26,7 @@ const ManageUsers = () => {
     // instructor
 
     const handleInstructor = (id) => {
+        console.log(id)
         fetch(`${import.meta.env.VITE_APIURL}/users/instructor/${id}`, {
             method: 'PATCH'
         })
@@ -67,9 +68,9 @@ const ManageUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <div>
-                                        <td onClick={()=>handleInstructor(user._id)} >{user?.role === 'instructor' ? <button  className="opacity-20" disabled ><GiTeacher className="h-5 w-5"
+                                        <td onClick={()=>handleInstructor(user.email)} >{user.role === 'instructor' ? <button  className="opacity-20" disabled ><GiTeacher className="h-5 w-5"
                                         title="Already Instructor"></GiTeacher></button> : <GiTeacher className="h-5  cursor-pointer  w-5" title="make Instructor"></GiTeacher>} </td>
-                                        <td onClick={() => handleAdmin(user._id)}>{user?.role === 'admin' ? <button className="opacity-20" disabled>
+                                        <td onClick={() => handleAdmin(user.email)}>{user.role === 'admin' ? <button className="opacity-20" disabled>
                                         <RiShieldUserLine className="h-5 w-5" title="Admin"></RiShieldUserLine>
                                         </button> : <RiShieldUserLine className="h-5 w-5 cursor-pointer " title="Make Admin"></RiShieldUserLine>} </td>
                                     </div>

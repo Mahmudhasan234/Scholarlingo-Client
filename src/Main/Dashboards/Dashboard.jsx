@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FcGraduationCap } from 'react-icons/fc'
@@ -7,11 +7,23 @@ import { SiGooglehome, SiGoogleclassroom } from 'react-icons/si'
 import { BiBookAdd, BiHomeAlt2, BiHistory, BiHome } from 'react-icons/bi'
 import { BsBookmarkCheck } from 'react-icons/bs'
 import useAdmin from '../../Hooks/useAdmin';
+import useInstructor from '../../Hooks/useInstructor';
+
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
-    console.log(user)
-    const [isAdmin] = useAdmin()
+    const [email ] = useAdmin()
+    // console.log(isAdminLoading)
+    const [instructorEmail] = useInstructor()
+    // console.log(instructorEmail.admin)
+    // const [role, setrole] = useState()
+    // useEffect(()=>{
+    //     fetch(`${import.meta.env.VITE_APIURL}/users`)
+    //     .then(res=>res.json())
+    //     .then(data => setrole(data))
+    // },[])
+    //     console.log(role)
+    // const [isAdmin] = useAdmin()
     // const isAdmin =true
 
     const isInstructor = false
@@ -37,7 +49,7 @@ const Dashboard = () => {
                         </div>
 
                         {
-                            isAdmin ? <>
+                            email.admin ? <>
                                 {/* admin section */}
                                 <div className="divider"></div>
                                 <li ><Link to=''><FcGraduationCap className='h-5 w-5'></FcGraduationCap> Manage Courses</Link></li>
@@ -48,7 +60,7 @@ const Dashboard = () => {
                                 :
                                 <>
                                     {
-                                        isInstructor ?
+                                        instructorEmail.admin ?
                                             <>
                                                 {/* instructor section */}
                                                 <div className="divider"></div>

@@ -12,6 +12,7 @@ import Dashboard from "../Main/Dashboards/Dashboard";
 import SelectedCourse from "../Pages/DashBoard/StudentDashboard/SelectedCourse";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 import ManageUsers from "../Main/Dashboards/Component/ManageUser/ManageUsers";
+import DashBoardHome from "../Main/Dashboards/Home Component/DashBoardHome";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+      {
+        path:"/dashboard",
+        element:<DashBoardHome></DashBoardHome>
+      },
       {
         path: "selectedCourse",
         element: <PrivateRoute><SelectedCourse></SelectedCourse></PrivateRoute>
