@@ -10,7 +10,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const IndividualInstructor = ({ instructor }) => {
     
-    console.log(instructor)
+    // console.log(instructor)
 
 
 
@@ -18,7 +18,7 @@ const IndividualInstructor = ({ instructor }) => {
         <div>
 
             <Container>
-                <div className="card w-96 mr-5 bg-base-100 shadow-xl mb-5">
+                <div className="hover:scale-105 transition-transform duration-500 card w-96 mr-5 bg-base-100 shadow-xl mb-16">
                     <div className="indicator relative left-16 top-12">
                         <span className='h-10 w-10 mb-5'>{instructor.countryImage? <img className='rounded' src={instructor.countryImage
                         } alt="" />:<p className='text-lg font-bold'>{instructor.language}</p>}</span>

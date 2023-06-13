@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../../Container/Container';
 import '@smastrom/react-rating/style.css'
 const LanguageCard = ({ language }) => {
-    console.log(language)
+    // console.log(language)
     return (
         <div>
             <div >

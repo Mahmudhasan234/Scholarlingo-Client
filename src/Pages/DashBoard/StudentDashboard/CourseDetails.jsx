@@ -4,7 +4,7 @@ import useSelectedCourse from '../useSelectedCourse';
 import { Link } from 'react-router-dom';
 const CourseDetails = ({ course }) => {
 
-      
+      console.log(course)
 const [, refetch] = useSelectedCourse()
     const handleDelete = id => {
         Swal.fire({

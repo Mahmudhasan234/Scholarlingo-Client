@@ -2,9 +2,10 @@ import React, { useContext, useState, } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../../Provider/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const AddCourses = () => {
     const { user } = useContext(AuthContext)
-    const [img, setimg]= useState('')
+    const navigate = useNavigate()
     // console.log(img)
     const handleSubmit = event => {
         event.preventDefault()
@@ -38,6 +39,8 @@ const AddCourses = () => {
         .then(data=>{
             if(data.insertedId){
                 toast.success('your course is uploaded for review')
+                navigate('/dashboard')
+
             }
         })
         })

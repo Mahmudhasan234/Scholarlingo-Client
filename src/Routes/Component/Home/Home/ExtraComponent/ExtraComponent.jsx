@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Container from '../../../Container/Container';
+import { Link } from 'react-router-dom';
 
 const ExtraComponent = () => {
     const [countdownValues, setCountdownValues] = useState({
@@ -42,11 +43,11 @@ const ExtraComponent = () => {
 
     return (
         <Container>
-            <div >
+            <div className='' >
                 <div className='h-96 min-w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 my-12 rounded-lg '>
-                    <div className="relative lg:left-1/3 top-[80px] left-5 card w-80 lg:w-96 bg-base-100 shadow-xl">
+                    <div className="relative lg:left-[700px] top-[80px] left-5 card w-80 lg:w-96 bg-base-100 shadow-xl">
                         <div className="card-body">
-                            <h2 className="text-xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-500">Student Summer Sales</h2>
+                            <h2 className="text-xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-500">Student Summer Sales 🔥</h2>
                             <div className="grid grid-flow-col gap-5 text-center">
                                 <div className="flex flex-col">
                                     <span className="countdown font-mono text-5xl">
@@ -75,7 +76,7 @@ const ExtraComponent = () => {
                             </div>
 
                             <div className="card-actions justify-center mt-5">
-                                <button className="btn bg-amber-500">check all Courses</button>
+                                <button className="btn hover:bg-amber-600 bg-amber-500 text-white"><Link to='/languages'>check all Courses</Link></button>
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { AuthContext } from '../../../../../Provider/AuthProvider';
 import { toast } from 'react-hot-toast';
-const CheckOutForm = ({ price }) => {
-  console.log(price)
+import { useNavigate } from 'react-router-dom';
+
+const CheckOutForm = ({ course }) => {
+  console.log(course.instructorId)
+  const price = course.price
+  const date = new Date()
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext)
-  console.log(user.displayName, user.email)
+  // console.log(user.displayName, user.email)
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState('')
@@ -21,7 +26,7 @@ const CheckOutForm = ({ price }) => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
+          // console.log(data)
           setClientSecret(data.clientSecret)
         })
     }
@@ -76,8 +81,37 @@ const CheckOutForm = ({ price }) => {
     }
     setProcessing(false)
     if (paymentIntent.status === 'succeeded') {
-     toast.success('payment Successful')
+      fetch(`${import.meta.env.VITE_APIURL}/payments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: user.email, transactionId: paymentIntent.id,
+          price,
+          courseName: course.courseName,
+          instructorName: course.instructorName,
+          instructorId: course.instructorId,
+          date,
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.insertedId) {
+            fetch(`${import.meta.env.VITE_APIURL}/usersData/${course._id}`, { method: 'DELETE' })
+              .then(res => res.json())
+              .then(data => {
+
+
+                console.log(data)
+
+              })
+
+            toast.success('payment Successful')
+            navigate('/dashboard/history')
+          }
+        })
     }
+    
+
   };
 
   return (

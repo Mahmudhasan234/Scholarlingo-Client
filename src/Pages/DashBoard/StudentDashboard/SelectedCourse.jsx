@@ -21,7 +21,7 @@ const SelectedCourse = () => {
 
     return (
         <div>
-            <h1 className='text-4xl font-bold'>Your Selected Course</h1>
+            <h1 className='text-4xl font-bold'>Your Selected Course: {selectedCourses.length}</h1>
          <table className='table'>
          <thead>
                         <tr>

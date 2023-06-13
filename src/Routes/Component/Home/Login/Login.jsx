@@ -7,7 +7,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../../../Provider/AuthProvider';
 const Login = () => {
-    const {user, signIn, createUserWithGoogle, logOut } = useContext(AuthContext)
+    const { user, signIn, createUserWithGoogle, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
@@ -19,17 +19,21 @@ const Login = () => {
     // ------- react form hook start -----
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
+        console.log(data)
         signIn(data.email, data.password)
-            .then(result=>{
-                toast.success(`welcome back ${result.user.displayName} 🖐` )
+            .then(result => {
+                toast.success(`welcome back ${result.user.displayName} 🖐`)
                 navigate(from ? from : '/')
             })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+            .catch(err => {
+                toast.error("Something went Wrong 😔 please try again!!")
+                console.log(err.message)
+            })
     }
     const handleSignInWithGoogle = () => {
         createUserWithGoogle()
-            .then(result => { 
-                const saveUser = { name:result.user.displayName, email: result.user.email }
+            .then(result => {
+                const saveUser = { name: result.user.displayName, email: result.user.email }
                 fetch(`${import.meta.env.VITE_APIURL}/users`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -41,11 +45,12 @@ const Login = () => {
                             toast.success(`welcome ${result.user.displayName} 🖐`)
                         }
                     })
-                console.log(result.user); 
-                navigate(from ? from : '/') 
+                console.log(result.user);
+                navigate(from ? from : '/')
             })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!")
-            console.log(err.message)
+            .catch(err => {
+                toast.error("Something went Wrong 😔 please try again!!")
+                console.log(err.message)
             })
     }
     return (
@@ -57,19 +62,19 @@ const Login = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="lg:p-24 p-6 min-w-full">
                                 <h1 className='text-xl md:text-4xl text-center font-bold mb-5'>Please Login</h1>
-                                <div className=" ">
+                                <div>
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="text" name='email'{...register("name")} placeholder="email" className="input input-bordered w-72" />
+                                    <input type="text" name='email'{...register("email")} placeholder="email" className="input input-bordered w-72" />
                                 </div>
                                 <div className="min-w-full">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
                                     <div className='flex items-center'>
-                                        <input type={show ? "text" : "password"} name='password' {...register("Password")} placeholder="password" className="input input-bordered w-72" />
-                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[550px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
+                                        <input type={show ? "text" : "password"} name='password' {...register("password")} placeholder="password" className="input input-bordered w-72" />
+                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[750px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
                                     <label className="label">
 

@@ -17,6 +17,9 @@ import AddCourses from "../Main/Dashboards/Component/Instructor/Add Courses/AddC
 import ManageMyCourse from "../Main/Dashboards/Component/Instructor/ManageMyCourse";
 import PendingRequest from "../Main/Dashboards/Component/Admin/PendingRequest";
 import PaymentSystem from "../Pages/DashBoard/StudentDashboard/Payment/PaymentSystem";
+import PaymentHistory from "../Pages/DashBoard/StudentDashboard/PaymentHistory";
+import EnrolledClass from "../Pages/DashBoard/StudentDashboard/EnrolledClass";
+import Error from "../shared/404/Error";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -45,9 +48,6 @@ export const router = createBrowserRouter([
       },
     ]
   },
-
-
-
 
   {
     path: "/dashboard",
@@ -80,8 +80,21 @@ export const router = createBrowserRouter([
       {
         path: "payment/:id",
         element: <PaymentSystem></PaymentSystem>,
-        loader: ({params})=> fetch(`${import.meta.env.VITE_APIURL}/usersData/${params.id}`),
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_APIURL}/usersData/${params.id}`),
+      },
+      {
+        path:'history',
+        element:<PaymentHistory></PaymentHistory>
+      },
+      {
+        path:'myclasses',
+        element:<EnrolledClass></EnrolledClass>
       },
     ]
+  },
+
+  {
+    path:'*',
+    element:<Error></Error>
   }
 ]);

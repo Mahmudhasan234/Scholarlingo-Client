@@ -4,7 +4,7 @@ import { Rating } from '@smastrom/react-rating'
 import {BsCart4} from 'react-icons/bs'
 import '@smastrom/react-rating/style.css'
 const Instructors = ({ instructor }) => {
-    console.log(instructor)
+    // console.log(instructor)
     // console.log(instructor.languagesCountryImage[0].countryImage)
     return (
         <div >

@@ -16,28 +16,28 @@ const ManageMyCourse = () => {
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-100">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Course Image
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Course Name
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Available Seats
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Enrolled Student
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Price
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Status
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Feedback
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         </th>
                     </tr>
                 </thead>
@@ -47,10 +47,10 @@ const ManageMyCourse = () => {
                             <td className="px-6 py-4">
                                 <img src={item.countryImage} alt="Country" className="h-10 w-10 rounded-full" />
                             </td>
-                            <td className="px-6 py-4">{item.language}</td>
-                            <td className="px-6 py-4">{item.availableSeatForEnrollment}</td>
-                            <td className="px-6 py-4">{item?.enrolledStudent || 0}</td>
-                            <td className="px-6 py-4">${item.price}</td>
+                            <td className="px-6 py-4 text-center">{item.language}</td>
+                            <td className="px-6 py-4 text-center">{item.availableSeatForEnrollment}</td>
+                            <td className="px-6 py-4 text-center">{item?.enrolledStudent || 0}</td>
+                            <td className="px-6 py-4 text-center">${item.price}</td>
                             {item.status === 'approved' ?
                                 <td
                                     className="px-6 p-4 text-green-500 rounded-full">{item.status}</td> : <td
@@ -61,9 +61,13 @@ const ManageMyCourse = () => {
                                     <button>
                                         <BsTrashFill className='h-5 w-5 cursor-pointer'></BsTrashFill>
                                     </button>
-                                    <button>
-                                        <MdPublish className='h-5 w-5 cursor-pointer' title='Upload Course'></MdPublish>
-                                    </button>
+                                   {
+                                    item.status == 'approved'?  <button>
+                                    <MdPublish className='h-5 w-5 cursor-pointer' title='Upload Course'></MdPublish>
+                                </button> :  <button disabled>
+                                        <MdPublish  className='h-5 w-5 opacity-25' title='Upload Course'></MdPublish>
+                                    </button> 
+                                   }
                                 </div>
                             </td>
                         </tr>

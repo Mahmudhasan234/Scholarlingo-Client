@@ -52,9 +52,9 @@ const Dashboard = () => {
                             email.admin ? <>
                                 {/* admin section */}
                                 <div className="divider"></div>
-                                <li ><Link to=''><FcGraduationCap className='h-5 w-5'></FcGraduationCap> Manage Courses</Link></li>
+                             
                                 <li><Link to='allusers'><MdManageAccounts className='h-5 w-5'></MdManageAccounts> Manage Users</Link></li>
-                                <li ><Link to='pendingRequest'><MdOutlinePendingActions className='h-5 w-5'></MdOutlinePendingActions>  Pending Request</Link></li>
+                                <li ><Link to='pendingRequest'><MdOutlinePendingActions className='h-5 w-5'></MdOutlinePendingActions> All Courses </Link></li>
                                 <li><Link to='/'><SiGooglehome className='h-5 w-5'></SiGooglehome> Admin Home</Link></li>
 
                             </>
@@ -75,8 +75,8 @@ const Dashboard = () => {
                                                 <div className="divider"></div>
 
                                                 <li ><Link to='/dashboard/selectedCourse'> <BsBookmarkCheck className='h-5 w-5'></BsBookmarkCheck>Selected Course</Link></li>
-                                                <li><Link> <BiHistory className='h-5 w-5'></BiHistory>Payment History</Link></li>
-                                                <li><Link><SiGoogleclassroom className='h-5 w-5'></SiGoogleclassroom> Enrolled Class</Link></li>
+                                                <li><Link to='/dashboard/history'> <BiHistory className='h-5 w-5'></BiHistory>Payment History</Link></li>
+                                                <li><Link to='/dashboard/myclasses'><SiGoogleclassroom className='h-5 w-5'></SiGoogleclassroom> Enrolled Class</Link></li>
                                                 <li><Link to='/'><BiHome className='h-5 w-5'></BiHome> Home</Link></li>
 
                                             </>

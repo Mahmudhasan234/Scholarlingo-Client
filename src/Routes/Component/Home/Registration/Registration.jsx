@@ -20,39 +20,46 @@ const Registration = () => {
 
 
 
-
     // ------- react form hook start -----
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const confirmPassword = watch("confirmPassword");
+    const password = watch("password");
     const onSubmit = data => {
+        
+        const name = data.name
         // upload image
-        const formData= new FormData() 
+        const formData = new FormData()
         formData.append('image', data.image[0])
         const url = ` https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_API}`
-        fetch(url,{method: 'POST', body:formData})
-        .then(res=>res.json()
-        .then(image=>console.log(image)))
-        // ------ create user ----
-        createUser(data.email, data.password)
-            .then(result => {
-                console.log(result.user)
-                UpdateUserContent(data.name)
-                    .then(() => {
-                        const saveUser = { name: data.name, email: data.email }
-                        fetch(`${import.meta.env.VITE_APIURL}/users`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(saveUser)
+        fetch(url, { method: 'POST', body: formData })
+            .then(res => res.json()
+                .then(imageurl => {
+                    console.log(imageurl)
+                    const image = imageurl.data.display_url
+                    console.log(name, image)
+                    // ------ create user ----
+                    createUser(data.email, data.password)
+                        .then(result => {
+                            console.log(result.user)
+                            UpdateUserContent(name, image)
+                                .then(() => {
+                                    const saveUser = { name: data.name, email: data.email }
+                                    fetch(`${import.meta.env.VITE_APIURL}/users`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(saveUser)
+                                    })
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.insertedId) {
+                                                toast.success(`welcome 🖐`)
+                                            }
+                                        })
+                                    navigate('/')
+                                })
                         })
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.insertedId) {
-                                    toast.success(`welcome 🖐`)
-                                }
-                            })
-                        navigate('/')
-                    })
-            })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+                        .catch(err => { toast.error("Something went Wrong 😔 please try again!!") })
+                }))
     }
     // ------- react form hook end -----
 
@@ -76,8 +83,10 @@ const Registration = () => {
 
                 console.log(result.user);
             })
-            .catch(err => { toast.error("Something went Wrong 😔 please try again!!") 
-        console.log(err.message)})
+            .catch(err => {
+                toast.error("Something went Wrong 😔 please try again!!")
+                console.log(err.message)
+            })
     }
 
 
@@ -92,20 +101,20 @@ const Registration = () => {
                                 <h1 className='text-xl md:text-4xl text-center font-bold mb-5'>Create an Account</h1>
                                 <div className=" min-w-full">
                                     <label className="label">
-                                        <span className="label-text">Name</span>
+                                        <span className="label-text">Name *</span>
                                     </label>
-                                    <input type="text" name='name'{...register("name")} placeholder="Name" className="input input-bordered" />
+                                    <input required type="text" name='name'{...register("name")} placeholder="Name" className="input input-bordered" />
                                 </div>
                                 <div className=" min-w-full">
                                     <label className="label">
-                                        <span className="label-text">Email</span>
+                                        <span className="label-text">Email *</span>
                                     </label>
-                                    <input type="text" name='email'{...register("email")} placeholder="email" className="input input-bordered" />
+                                    <input required type="text" name='email'{...register("email")} placeholder="email" className="input input-bordered" />
                                 </div>
                                 <div className='flex flex-col mt-5 ml-0 w-max mx-auto'>
                                     <label>
-                                        <span className="label-text mb-5">Upload your image</span>
-                                        <input
+                                        <span className="label-text mb-5">Upload your image *</span>
+                                        <input required
                                             className='cursor-pointer hidden'
                                             type='file'
                                             name='image'
@@ -122,21 +131,34 @@ const Registration = () => {
 
                                 <div className="min-w-full">
                                     <label className="label">
-                                        <span className="label-text">Password</span>
+                                        <span className="label-text">Password *</span>
                                     </label>
                                     <div className='flex items-center'>
-                                        <input type={show ? "text" : "password"} name='password' {...register("password")} placeholder="password" className="input input-bordered" />
+                                        <input required type={show ? "text" : "password"} name='password' {...register("password", {
+                                            minLength: {
+                                                value: 6,
+                                                message: "Password must be at least 6 characters long."
+                                            },
+                                            pattern: {
+                                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{1,}$/,
+                                                message: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+                                            }
+                                        })} placeholder="password" className="input input-bordered" />
                                         <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[510px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
+                                    {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                                 </div>
                                 <div className="min-w-full">
                                     <label className="label">
-                                        <span className="label-text"> Confirm Password</span>
+                                        <span className="label-text"> Confirm Password *</span>
                                     </label>
                                     <div className='flex items-center'>
-                                        <input type={show ? "text" : "password"} name='confirmPassword' {...register("confirmPassword")} placeholder="password" className="input input-bordered" />
+                                        <input required type={show ? "text" : "password"} name='confirmPassword' {...register("confirmPassword", {
+                                            validate: value => value === password || "Passwords do not match."
+                                        })} placeholder="password" className="input input-bordered" />
                                         <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[510px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
+                                    {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                                     <label className="label">
 
                                         <p>Already Have an Account? <Link to='/login'>Login</Link></p>
