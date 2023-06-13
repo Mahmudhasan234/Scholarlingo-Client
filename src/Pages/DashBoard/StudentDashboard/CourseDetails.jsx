@@ -1,9 +1,10 @@
 import React from 'react';
 import Swal from 'sweetalert2'
 import useSelectedCourse from '../useSelectedCourse';
-
-
+import { Link } from 'react-router-dom';
 const CourseDetails = ({ course }) => {
+
+      
 const [, refetch] = useSelectedCourse()
     const handleDelete = id => {
         Swal.fire({
@@ -16,7 +17,7 @@ const [, refetch] = useSelectedCourse()
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`${import.meta.env.VITE_APIURL}/userData/${id}`, { method: 'DELETE' })
+                fetch(`${import.meta.env.VITE_APIURL}/usersData/${id}`, { method: 'DELETE' })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount > 0) {
@@ -63,7 +64,8 @@ const [, refetch] = useSelectedCourse()
                 <td>{course?.availableSeat}</td>
                 <td>${course?.price}</td>
                 <th>
-                    <button className="rounded hover:bg-green-200 btn-xs">Pay</button>
+                    <button className="rounded hover:bg-green-200 btn-xs"><Link to={`/dashboard/payment/${course._id}`}>Pay 
+                         </Link></button>
                 </th>
                 <th>
                     <button onClick={() => handleDelete(course._id)} className="rounded  hover:bg-red-200 btn-xs">Delete</button>

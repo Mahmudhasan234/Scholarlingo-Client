@@ -16,6 +16,7 @@ import DashBoardHome from "../Main/Dashboards/Home Component/DashBoardHome";
 import AddCourses from "../Main/Dashboards/Component/Instructor/Add Courses/AddCourses";
 import ManageMyCourse from "../Main/Dashboards/Component/Instructor/ManageMyCourse";
 import PendingRequest from "../Main/Dashboards/Component/Admin/PendingRequest";
+import PaymentSystem from "../Pages/DashBoard/StudentDashboard/Payment/PaymentSystem";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +76,11 @@ export const router = createBrowserRouter([
       {
         path: "pendingRequest",
         element: <PendingRequest></PendingRequest>
+      },
+      {
+        path: "payment/:id",
+        element: <PaymentSystem></PaymentSystem>,
+        loader: ({params})=> fetch(`${import.meta.env.VITE_APIURL}/usersData/${params.id}`),
       },
     ]
   }
