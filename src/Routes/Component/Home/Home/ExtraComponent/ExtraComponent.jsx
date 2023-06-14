@@ -50,25 +50,25 @@ const ExtraComponent = () => {
                             <h2 className="text-xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-500">Student Summer Sales 🔥</h2>
                             <div className="grid grid-flow-col gap-5 text-center">
                                 <div className="flex flex-col">
-                                    <span className="countdown font-mono text-5xl">
+                                    <span className="countdown font-mono text-2xl">
                                         <span style={{ '--value': formatTime(countdownValues.days) }}></span>
                                     </span>
                                     days
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="countdown font-mono text-5xl">
+                                    <span className="countdown font-mono text-2xl">
                                         <span style={{ '--value': formatTime(countdownValues.hours) }}></span>
                                     </span>
                                     hours
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="countdown font-mono text-5xl">
+                                    <span className="countdown font-mono text-2xl">
                                         <span style={{ '--value': formatTime(countdownValues.minutes) }}></span>
                                     </span>
                                     min
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="countdown font-mono text-5xl">
+                                    <span className="countdown font-mono text-2xl">
                                         <span style={{ '--value': formatTime(countdownValues.seconds) }}></span>
                                     </span>
                                     sec

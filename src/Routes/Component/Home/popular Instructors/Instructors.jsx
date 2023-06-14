@@ -11,7 +11,7 @@ const Instructors = ({ instructor }) => {
 
             <Container> <div className="card w-96 mr-5 bg-base-100 shadow-xl mb-5 ">
                 <div className="indicator relative left-16 top-12">
-                    <span className='h-5 mb-5'><img className='rounded' src={instructor.countryImage}alt="" /></span>
+                    <span className='h-5 w-5 mb-5'><img className='rounded' src={instructor.countryImage}alt="" /></span>
                 </div>
                 <figure className="px-10 pt-10 h-80">
                     <img src={instructor.instructorImage} alt="Shoes" className="border-4 p-2 border-rose-400 rounded-full h-[248px] w-[260px]"/>
