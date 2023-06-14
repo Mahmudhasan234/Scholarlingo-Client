@@ -15,12 +15,12 @@ This is a website for a summer language course where users can create an account
 4. Instructor Profiles: Users can explore comprehensive profiles of experienced instructors, gaining insight into their qualifications and teaching specialties, fostering trust and informed decision-making when selecting language instructors.
 
 ## Packages Used
-- @egjs/react-flicking
-- @emotion/react
-- @smastrom/react-rating
-- @stripe/react-stripe-js
-- @stripe/stripe-js
-- @tanstack/react-query
+- egjs/react-flicking
+- emotion/react
+- smastrom/react-rating
+- stripe/react-stripe-js
+- stripe/stripe-js
+- tanstack/react-query
 - axios
 - firebase
 - jsonwebtoken
@@ -41,5 +41,5 @@ This is a website for a summer language course where users can create an account
 - swiper
 
 ## Live Site
-[Website Live Link](https://www.example.com)
+[Website Live Link](https://scholarlingo-auth.web.app/)
 

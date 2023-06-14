@@ -12,7 +12,7 @@ const PopularLanguage = () => {
     }, [])
 
     return (
-        <div className='flex flex-col items-center gap-5'>
+        <div className='flex flex-col items-center gap-5 mx-5'>
 
             <h1 className='text-2xl lg:text-7xl font-extrabold text-center m-12 text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-pink-400'>Our Courses</h1>
             <p className='text-sm lg:text-lg mx-5 lg:mx-52 -mt-12 mb-5 text-center'>Ignite your curiosity and fuel your intellectual growth with our prestigious selection of top courses, meticulously designed to challenge and inspire. Led by distinguished instructors, these transformative learning experiences provide a gateway to explore new disciplines, expand your horizons, and embark on a journey of continuous self-improvement that sets you apart from the rest.</p>

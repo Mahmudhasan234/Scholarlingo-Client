@@ -144,7 +144,7 @@ const Registration = () => {
                                                 message: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
                                             }
                                         })} placeholder="password" className="input input-bordered" />
-                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[510px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
+                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[700px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
                                     {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                                 </div>
@@ -156,7 +156,7 @@ const Registration = () => {
                                         <input required type={show ? "text" : "password"} name='confirmPassword' {...register("confirmPassword", {
                                             validate: value => value === password || "Passwords do not match."
                                         })} placeholder="password" className="input input-bordered" />
-                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[510px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
+                                        <p onClick={handleShow} className='text-right absolute left-56 md:left-80 lg:left-80 xl:left-[700px] cursor-pointer'>{show ? <AiFillEyeInvisible className='h-6 w-6'></AiFillEyeInvisible> : <AiFillEye className='h-6 w-6'></AiFillEye>}</p>
                                     </div>
                                     {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
                                     <label className="label">
