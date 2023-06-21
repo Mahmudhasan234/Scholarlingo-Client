@@ -14,6 +14,14 @@ This is a website for a summer language course where users can create an account
 
 4. Instructor Profiles: Users can explore comprehensive profiles of experienced instructors, gaining insight into their qualifications and teaching specialties, fostering trust and informed decision-making when selecting language instructors.
 
+## Technology Used
+-React Js 
+-TailwindCSS 
+-DaisyUI 
+-React Route
+-Firebase authentication
+-Stripe 
+
 ## Packages Used
 - egjs/react-flicking
 - emotion/react
